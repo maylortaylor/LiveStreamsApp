@@ -6,6 +6,16 @@
 **/appsettings.staging.json
 **/appsettings.production.json
 
+# ignore connectionstrings
+**/connectionstrings.development.json
+**/connectionstrings.staging.json
+**/connectionstrings.production.json
+
+# ignore mailsettings
+**/mailsettings.development.json
+**/mailsettings.staging.json
+**/mailsettings.production.json
+
 # User-specific files
 *.suo
 *.user

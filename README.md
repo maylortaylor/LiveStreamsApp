@@ -44,6 +44,17 @@
 
 (this should run the API on [https://localhost:5050/api](https://localhost:5050/api))
 
+# Being Safe And Secure
+
+1.   Add an appsettings.development.json file to your project. Use this file for storing all your configuration values
+2.   Use appsettings.json only as an example template and never to store any settings. This file will be checked into source control and will be used by developers to setup their own appsettings.{env.EnvironmentName}.json file
+3.   Add a .gitignore rule to ignore appsettings.{env.EnvironmentName}.json
+
+         # ignore appsettings configuration files
+         **/appsettings.development.json
+         **/appsettings.staging.json
+         **/appsettings.production.json
+
 # ASP.NET Core + Angular 6.1 + API server + IdentityServer 4
 
 This solution has 3 projects.
