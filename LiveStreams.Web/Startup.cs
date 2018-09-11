@@ -34,10 +34,6 @@ namespace LiveStreamsApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRouting(opts => opts.LowercaseUrls = true);
-            // Add Cors
-            services.AddCors();
-
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -46,8 +42,9 @@ namespace LiveStreamsApp
             services.AddNodeServices();
 
             var connection = @"Server=(mysql)\mysqllocaldb;Database=LiveStreamsApp;Trusted_Connection=True;";
-
-            services.AddDbContext<LiveStreamsAppContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<LiveStreamsAppContext>(
+                options => options.UseSqlServer(connection)
+            );
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -97,6 +94,10 @@ namespace LiveStreamsApp
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseSpaStaticFiles();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -110,49 +111,8 @@ namespace LiveStreamsApp
             else
             {
                 app.UseExceptionHandler("/Shared/Error");
-                // app.UseHsts();
             }
 
-            // Setup Cors
-            app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod());
-
-            // app.UseHttpsRedirection();
-            // app.UseCookiePolicy();
-            app.UseSpaStaticFiles();
-            app.UseStaticFiles(
-            //     new StaticFileOptions() {
-            //     OnPrepareResponse = c => {
-
-            //         //Do not add cache to json files. We need to have new versions when we add new translations.
-            //         if (!c.Context.Request.Path.Value.Contains(".json"))
-            //         {
-            //             c.Context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
-            //             {
-            //                 MaxAge = TimeSpan.FromDays(30) // Cache everything except json for 30 days
-            //             };
-            //         }
-            //         else
-            //         {
-            //             c.Context.Response.GetTypedHeaders().CacheControl = new CacheControlHeaderValue()
-            //             {
-            //                 MaxAge = TimeSpan.FromMinutes(15) // Cache json for 15 minutes
-            //             };
-            //         }
-            //     }
-            // }
-            );
-
-            //The app.MapWhen function says when the route has "Reader" in it change the spa fallback. You would do this for each app.
-            // app.MapWhen(context => context.Request.Path.Value.StartsWith("/Reader"), builder =>
-            // {
-            //     builder.UseMvc(routes =>
-            //     {
-            //         routes.MapSpaFallbackRoute("reader-fallback", new { area = "Reader", controller = "Default", action="Index" });
-            //     });
-            // });
 
             app.UseMvc(routes =>
             {
