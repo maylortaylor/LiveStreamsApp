@@ -78,3 +78,16 @@
 2018-09-10 17:27:30.703 -04:00 [INF] AuthenticationScheme: Identity.Application signed out.
 2018-09-10 17:27:30.705 -04:00 [INF] AuthenticationScheme: Identity.External signed out.
 2018-09-10 17:27:30.706 -04:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2018-09-11 01:46:55.793 -04:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-09-11 01:46:55.851 -04:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-09-11 01:46:55.852 -04:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-09-11 01:46:55.853 -04:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-09-11 01:46:55.854 -04:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-09-11 01:51:56.358 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2018-09-11 01:52:12.758 -04:00 [INF] AuthenticationScheme: Google was challenged.
+2018-09-11 02:20:27.685 -04:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-09-11 02:20:27.752 -04:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-09-11 02:20:27.752 -04:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-09-11 02:20:27.753 -04:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-09-11 02:20:27.754 -04:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-09-11 02:36:03.076 -04:00 [INF] AuthenticationScheme: Identity.Application was challenged.

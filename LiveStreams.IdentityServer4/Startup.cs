@@ -51,6 +51,7 @@ namespace LiveStreams.IdentityServer4
             });
 
             var builder = services.AddIdentityServer()
+                    .AddDeveloperSigningCredential()
                 // Use mySql DB for storing configuration data
                 .AddConfigurationStore(configDb =>
                 {
@@ -67,7 +68,6 @@ namespace LiveStreams.IdentityServer4
 
             if (Environment.IsDevelopment())
             {
-                builder.AddDeveloperSigningCredential();
             }
             else
             {
@@ -89,6 +89,7 @@ namespace LiveStreams.IdentityServer4
             if (Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
                 app.UseDatabaseErrorPage();
             }
             else
@@ -98,7 +99,12 @@ namespace LiveStreams.IdentityServer4
 
             app.UseStaticFiles();
             app.UseIdentityServer();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
 
         private void InitializeDatabase(IApplicationBuilder app)
